@@ -1,0 +1,94 @@
+// prisma/schema.prisma
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library" 
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// --- 1. CATALOGOS (Diccionarios fijos) ---
+
+model Category {
+  id       String    @id @default(uuid())
+  name     String    @unique              // Ej: "Procesador", "Memoria RAM"
+  slug     String    @unique              // Ej: "cpu", "ram"
+  products Product[] 
+}
+
+model Socket {
+  id           String    @id @default(uuid())
+  name         String    @unique          // Ej: "LGA1700", "AM5"
+  
+  // Relación "inversa" (no necesitamos guardarla en BD, Prisma la maneja)
+  cpus         Product[] @relation("CpuSocket") 
+  motherboards Product[] @relation("MoboSocket")
+}
+
+// --- 2. TABLA MAESTRA DE PRODUCTOS ---
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String
+  price       Float
+  imageUrl    String?
+  stock       Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  // Relación con Categoría (Obligatoria)
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+
+  // --- ESPECIFICACIONES TÉCNICAS (Nullables) ---
+  
+  // Para CPU (Su propio socket)
+  socketId    String?
+  socket      Socket?  @relation("CpuSocket", fields: [socketId], references: [id])
+
+  // Para Motherboard (El socket que soporta)
+  compatibleSocketId String?
+  compatibleSocket   Socket? @relation("MoboSocket", fields: [compatibleSocketId], references: [id])
+
+  // Para RAM y Motherboard (Tipo de memoria: DDR4, DDR5)
+  memoryType  String?
+
+  // Para CPU, GPU (Consumo) y PSU (Potencia)
+  powerWatts  Int?
+  
+  // Para Case y Motherboard (Tamaño: ATX, mATX)
+  formFactor  String?
+
+  // Relación con carritos guardados
+  buildItems  BuildItem[]
+}
+
+// --- 3. GESTIÓN DE CARRITOS / BUILDS ---
+
+model Build {
+  id          String      @id @default(uuid())
+  name        String      // Ej: "Mi PC Gamer"
+  totalPrice  Float
+  
+  // Opcional: Para guardar quién la creó (si implementamos Auth luego)
+  userId      String?     
+  
+  createdAt   DateTime    @default(now())
+  
+  items       BuildItem[]
+}
+
+model BuildItem {
+  id        String  @id @default(uuid())
+  
+  buildId   String
+  build     Build   @relation(fields: [buildId], references: [id])
+  
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  
+  quantity  Int     @default(1)
+}
