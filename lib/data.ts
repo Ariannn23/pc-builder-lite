@@ -13,6 +13,10 @@ export async function getCategories() {
 }
 
 // 2. Obtener productos por su "slug" de categoría (ej: traer solo CPUs)
+// lib/data.ts
+
+// ... (imports y getCategories igual)
+
 export async function getProductsByCategory(categorySlug: string) {
   try {
     const products = await prisma.product.findMany({
@@ -22,7 +26,9 @@ export async function getProductsByCategory(categorySlug: string) {
         },
       },
       include: {
-        socket: true,
+        socket: true, // Trae datos del Socket
+        compatibleSocket: true,
+        category: true,
       },
     });
     return products;
