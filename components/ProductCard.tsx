@@ -1,6 +1,6 @@
 // components/ProductCard.tsx
 "use client";
-
+import { Cpu, Zap, MemoryStick, Layers } from "lucide-react";
 import { useBuilderStore } from "../store/useBuilder";
 // Importamos tipos necesarios
 import type { Product, Category, Socket } from "@prisma/client";
@@ -77,37 +77,43 @@ export default function ProductCard({ product }: Props) {
           </span>
         </div>
 
-        <div className="text-sm text-gray-400 mb-4 space-y-1">
-          {/* Detalles Técnicos */}
+        <div className="text-sm text-gray-400 mb-4 space-y-2">
+          {/* Socket (Icono CPU) */}
           {product.socket && (
-            <p>
-              Socket:{" "}
-              <span className="text-gray-300">{product.socket.name}</span>
-            </p>
+            <div className="flex items-center gap-2">
+              <Cpu size={16} className="text-blue-400" />
+              <span>{product.socket.name}</span>
+            </div>
           )}
+
+          {/* Socket Compatible (Icono Layers) */}
           {product.compatibleSocket && (
-            <p>
-              Soporta:{" "}
-              <span className="text-gray-300">
-                {product.compatibleSocket.name}
-              </span>
-            </p>
+            <div className="flex items-center gap-2">
+              <Layers size={16} className="text-purple-400" />
+              <span>Soporta: {product.compatibleSocket.name}</span>
+            </div>
           )}
-          {product.memoryType && (
-            <p>
-              Tipo: <span className="text-gray-300">{product.memoryType}</span>
-            </p>
-          )}
+
+          {/* Watts (Icono Rayo) */}
           {product.powerWatts && product.powerWatts > 0 && (
-            <p>
-              TDP: <span className="text-gray-300">{product.powerWatts}W</span>
-            </p>
+            <div className="flex items-center gap-2">
+              <Zap size={16} className="text-yellow-400" />
+              <span>{product.powerWatts}W</span>
+            </div>
+          )}
+
+          {/* Memoria (Icono RAM) */}
+          {product.memoryType && (
+            <div className="flex items-center gap-2">
+              <MemoryStick size={16} className="text-green-400" />
+              <span>{product.memoryType}</span>
+            </div>
           )}
 
           {/* Mensaje de error específico */}
           {!isCompatible && (
-            <p className="text-red-400 font-bold text-xs mt-2 border-t border-red-900/50 pt-1">
-              ⛔ {incompatibilityReason}
+            <p className="text-red-400 font-bold text-xs mt-2 border-t border-red-900/50 pt-1 flex items-center gap-1">
+              {incompatibilityReason}
             </p>
           )}
         </div>
