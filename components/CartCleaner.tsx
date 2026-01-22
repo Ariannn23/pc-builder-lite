@@ -14,4 +14,3 @@ export default function CartCleaner() {
 
   return null; // Este componente no renderiza nada visible
 }
-    
