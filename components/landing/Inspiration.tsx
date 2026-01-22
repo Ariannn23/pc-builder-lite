@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Cpu, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Inspiration() {
   return (
@@ -17,13 +18,16 @@ export default function Inspiration() {
               Configuraciones populares de nuestra comunidad.
             </p>
           </div>
-          <button className="text-electric-600 font-bold hover:text-electric-700 transition flex items-center gap-2 group cursor-pointer">
+          <Link
+            href="/my-builds"
+            className="text-blue-600 font-bold hover:text-blue-700 transition flex items-center gap-2 group cursor-pointer"
+          >
             Ver todas{" "}
             <ArrowRight
               size={18}
               className="group-hover:translate-x-1 transition-transform"
             />
-          </button>
+          </Link>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">

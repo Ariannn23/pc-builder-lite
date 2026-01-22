@@ -2,11 +2,15 @@
 
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
 export async function saveBuild(totalPrice: number, selectedParts: any) {
   let buildId: string;
 
   try {
+    const session = await auth();
+    const userId = session?.user?.id;
+
     // Convertir el objeto de partes seleccionadas en un array
     const partsArray = Object.values(selectedParts);
 
@@ -15,6 +19,7 @@ export async function saveBuild(totalPrice: number, selectedParts: any) {
       data: {
         name: `PC Build - ${new Date().toLocaleDateString()}`,
         totalPrice: totalPrice,
+        userId: userId, // Asociamos el build al usuario si está logueado
         buildItems: {
           create: partsArray.map((product: any) => ({
             productId: product.id,

@@ -18,6 +18,52 @@
   --color-electric-950: #172554;
 }
 
+/* Keyframes para StarButton */
+@keyframes border-glow-translate {
+  0% {
+    transform: translateX(-10%) translateY(-10%);
+  }
+  100% {
+    transform: translateX(10%) translateY(10%);
+  }
+}
+
+@keyframes border-glow-scale {
+  0% {
+    transform: translateX(-50%) scaleY(0.8);
+  }
+  50% {
+    transform: translateX(-50%) scaleY(1.2);
+  }
+  100% {
+    transform: translateX(-50%) scaleY(0.8);
+  }
+}
+
+@keyframes star-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes star-shine {
+  0% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+}
+
 /* Estilos para el Scrollbar "Aero" */
 @layer utilities {
   /* Ancho y Alto del riel */

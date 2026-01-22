@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import { auth } from "@/auth";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,16 +20,19 @@ export const metadata: Metadata = {
     "La herramienta definitiva para armar tu PC Gamer sin errores de compatibilidad.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar session={session} />
         {children}
       </body>
     </html>

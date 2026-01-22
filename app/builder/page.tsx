@@ -1,9 +1,8 @@
 import { getCategories, getProductsByCategory } from "@/lib/data";
 import BuildSummary from "@/components/BuildSummary";
 import ProductCard from "@/components/ProductCard";
-import CategoryTabs from "@/components/CategoryTabs";
 import Link from "next/link";
-import Logo from "@/components/Logo"; // <--- VOLVEMOS AL IMPORT ORIGINAL
+import CategoryTabs from "@/components/CategoryTabs";
 
 interface BuilderProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -19,37 +18,17 @@ export default async function BuilderPage(props: BuilderProps) {
     categories.find((c) => c.slug === categorySlug)?.name || "Componente";
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 text-slate-900 pb-20">
-      {/* Header Compacto */}
-      <header className="bg-white/70 backdrop-blur-lg border-b border-blue-100 p-4 mb-8 sticky top-0 z-20 shadow-sm">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          {/* Logo SVG y Título */}
-          <Link
-            href="/"
-            className="hover:opacity-80 transition flex items-center gap-2.5 group"
-          >
-            {/* USAMOS EL COMPONENTE LOGO OTRA VEZ */}
-            <Logo
-              size={36}
-              className="group-hover:scale-110 transition-transform duration-300 drop-shadow-sm"
-            />
+    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 text-slate-900 pb-20 pt-28">
+      {/* Header eliminado porque ahora usamos el Navbar global */}
 
-            <h1 className="text-xl font-extrabold tracking-tight text-slate-800">
-              PC Builder{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-electric-600 to-electric-400">
-                Lite
-              </span>
-            </h1>
-          </Link>
-
-          <Link
-            href="/"
-            className="text-sm text-slate-500 hover:text-electric-600 transition font-medium"
-          >
-            ← Volver al Inicio
-          </Link>
-        </div>
-      </header>
+      <div className="max-w-7xl mx-auto px-6 mb-2 flex justify-end">
+        <Link
+          href="/"
+          className="text-xs text-slate-400 hover:text-slate-800 transition flex items-center gap-1"
+        >
+          ← Volver al Inicio
+        </Link>
+      </div>
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
