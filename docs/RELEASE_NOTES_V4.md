@@ -4,7 +4,7 @@
 
 Esta versión introduce una renovación visual completa del sistema de autenticación y mejoras críticas en la experiencia móvil, consolidando la identidad visual "Electric Blue".
 
-### ✨ Autenticación (Login & Registro)
+### Autenticación (Login & Registro)
 
 - **Diseño Material**: Implementación de formularios con inputs de etiquetas flotantes y tarjetas blancas limpias.
 - **Diseño Compacto**: Encabezados integrados con subtítulos dentro del bloque de color para un look más moderno.
@@ -13,12 +13,12 @@ Esta versión introduce una renovación visual completa del sistema de autentica
   - **Entrada**: Animación suave `zoom-in` al cargar los formularios.
   - **Interacción**: Feedback táctil sutil (anillo azul) en los botones de acción.
 
-### 📱 Navegación Móvil
+### Navegación Móvil
 
 - **Componente MobileNav**: Nuevo menú hamburguesa que colapsa las opciones de autenticación en pantallas pequeñas.
 - **Layout Responsive**: Ajuste dinámico del logo y espaciados para evitar superposiciones en celulares.
 
-### 🎨 Componentes UI
+### Componentes UI
 
 - **WhyChooseUs**: Reestilizado con iconos modernos y subrayados en gradiente.
 - **Estilo Global**: Unificación de sombras, bordes y transiciones bajo el sistema de diseño del proyecto.
