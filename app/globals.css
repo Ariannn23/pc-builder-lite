@@ -1,15 +1,51 @@
 @import "tailwindcss";
 
 @theme {
+  /* Patrón wildcard OBLIGATORIO para Tailwind v4 */
   --color-electric-*: initial;
-  --color-electric-950: #0a0520;
-  --color-electric-900: #150a40;
-  --color-electric-800: #200f60;
-  --color-electric-700: #3318e8;
-  --color-electric-600: #502dee;
-  --color-electric-500: #6c43f4;
-  --color-electric-400: #8958f9;
-  --color-electric-300: #a56dff;
-  --color-electric-200: #c499ff;
-  --color-electric-100: #e0caff;
+
+  /* Nueva Paleta "Clean Tech" (Azul Profesional) */
+  --color-electric-50: #eff6ff;
+  --color-electric-100: #dbeafe;
+  --color-electric-200: #bfdbfe;
+  --color-electric-300: #93c5fd;
+  --color-electric-400: #60a5fa;
+  --color-electric-500: #3b82f6;
+  --color-electric-600: #2563eb;
+  --color-electric-700: #1d4ed8;
+  --color-electric-800: #1e40af;
+  --color-electric-900: #1e3a8a;
+  --color-electric-950: #172554;
+}
+
+/* Estilos para el Scrollbar "Aero" */
+@layer utilities {
+  /* Ancho y Alto del riel */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px; /* Altura para el scroll horizontal */
+  }
+
+  /* El fondo del riel (Track) */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+    margin: 4px;
+  }
+
+  /* La barra que se mueve (Thumb) */
+  ::-webkit-scrollbar-thumb {
+    background: #bfdbfe; /* electric-200 */
+    border-radius: 10px;
+    border: 2px solid transparent; /* Truco para dar "aire" alrededor */
+    background-clip: content-box;
+    transition: background 0.3s ease;
+  }
+
+  /* Hover en la barra */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #60a5fa; /* electric-400 */
+    border: 1px solid transparent;
+    background-clip: content-box;
+  }
 }

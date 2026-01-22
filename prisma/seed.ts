@@ -1,20 +1,20 @@
-// prisma/seed.ts
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("🌱 Empezando el seed...");
+  console.log("🌱 Iniciando sembrado de datos (CORREGIDO)...");
 
-  // 1. Limpiar base de datos (por si corres esto dos veces)
-  // Borramos en orden para no romper relaciones
-  await prisma.buildItem.deleteMany();
-  await prisma.build.deleteMany();
+  // 1. Limpiar base de datos
   await prisma.product.deleteMany();
-  await prisma.socket.deleteMany();
   await prisma.category.deleteMany();
+  await prisma.socket.deleteMany();
 
-  // 2. Crear Categorías
+  // 2. Crear Sockets
+  const lga1700 = await prisma.socket.create({ data: { name: "LGA 1700" } });
+  const am5 = await prisma.socket.create({ data: { name: "AM5" } });
+
+  // 3. Crear Categorías
   const catCpu = await prisma.category.create({
     data: { name: "Procesador", slug: "cpu" },
   });
@@ -24,80 +24,285 @@ async function main() {
   const catRam = await prisma.category.create({
     data: { name: "Memoria RAM", slug: "ram" },
   });
-
-  // 3. Crear Sockets
-  const socketLga1700 = await prisma.socket.create({
-    data: { name: "LGA 1700" },
-  }); // Intel 12/13/14
-  const socketAm5 = await prisma.socket.create({ data: { name: "AM5" } }); // Ryzen 7000
-
-  // 4. Crear Productos (CPUs)
-  await prisma.product.create({
-    data: {
-      name: "Intel Core i5-12400F",
-      price: 150.0,
-      imageUrl:
-        "https://m.media-amazon.com/images/I/51051FiD9UL._AC_SL1000_.jpg",
-      stock: 10,
-      categoryId: catCpu.id,
-      socketId: socketLga1700.id, // Es socket LGA1700
-      powerWatts: 65,
-    },
+  const catGpu = await prisma.category.create({
+    data: { name: "Tarjeta de Video", slug: "gpu" },
+  });
+  const catStorage = await prisma.category.create({
+    data: { name: "Almacenamiento", slug: "storage" },
+  });
+  const catPsu = await prisma.category.create({
+    data: { name: "Fuente de Poder", slug: "psu" },
   });
 
-  await prisma.product.create({
-    data: {
-      name: "AMD Ryzen 5 7600X",
-      price: 220.0,
-      imageUrl:
-        "https://m.media-amazon.com/images/I/61sRsB6+sRL._AC_SL1000_.jpg",
-      stock: 5,
-      categoryId: catCpu.id,
-      socketId: socketAm5.id, // Es socket AM5
-      powerWatts: 105,
-    },
+  // 4. Crear Productos (Usando imageUrl)
+
+  // --- CPUs ---
+  await prisma.product.createMany({
+    data: [
+      {
+        name: "Intel Core i3-12100F",
+        price: 110,
+        imageUrl: "/products/core-i3-12100f.jpg", 
+        stock: 20,
+        categoryId: catCpu.id,
+        socketId: lga1700.id,
+        powerWatts: 58,
+      },
+      {
+        name: "Intel Core i5-12400F",
+        price: 150,
+        imageUrl: "/products/core-i5-12400f.jpg",
+        stock: 15,
+        categoryId: catCpu.id,
+        socketId: lga1700.id,
+        powerWatts: 65,
+      },
+      {
+        name: "Intel Core i7-12700K",
+        price: 320,
+        imageUrl: "/products/core-i7-12700k.jpg",
+        stock: 8,
+        categoryId: catCpu.id,
+        socketId: lga1700.id,
+        powerWatts: 190,
+      },
+      {
+        name: "AMD Ryzen 5 7600X",
+        price: 220,
+        imageUrl: "/products/ryzen-5-7600x.jpg",
+        stock: 12,
+        categoryId: catCpu.id,
+        socketId: am5.id,
+        powerWatts: 105,
+      },
+      {
+        name: "AMD Ryzen 7 7700X",
+        price: 330,
+        imageUrl: "/products/ryzen-7-7700x.jpg",
+        stock: 5,
+        categoryId: catCpu.id,
+        socketId: am5.id,
+        powerWatts: 105,
+      },
+    ],
   });
 
-  // 5. Crear Productos (Motherboards)
-  await prisma.product.create({
-    data: {
-      name: "ASUS Prime B660M-A D4",
-      price: 130.0,
-      imageUrl:
-        "https://m.media-amazon.com/images/I/815uX7u2HQL._AC_SL1500_.jpg",
-      stock: 8,
-      categoryId: catMobo.id,
-      compatibleSocketId: socketLga1700.id, // Soporta Intel
-      memoryType: "DDR4",
-      formFactor: "mATX",
-    },
+  // --- PLACAS MADRE ---
+  await prisma.product.createMany({
+    data: [
+      {
+        name: "ASUS Prime H610M-E D4",
+        price: 99,
+        imageUrl: "/products/asus-prime-h610m.jpg",
+        stock: 10,
+        categoryId: catMobo.id,
+        compatibleSocketId: lga1700.id,
+        memoryType: "DDR4",
+      },
+      {
+        name: "Gigabyte B660M DS3H AX",
+        price: 139,
+        imageUrl: "/products/gigabyte-b660m.jpg",
+        stock: 8,
+        categoryId: catMobo.id,
+        compatibleSocketId: lga1700.id,
+        memoryType: "DDR4",
+      },
+      {
+        name: "MSI PRO Z690-A WiFi (DDR5)",
+        price: 219,
+        imageUrl: "/products/msi-z690-a.jpg",
+        stock: 4,
+        categoryId: catMobo.id,
+        compatibleSocketId: lga1700.id,
+        memoryType: "DDR5",
+      },
+      {
+        name: "ASRock B650M-HDV/M.2",
+        price: 125,
+        imageUrl: "/products/asrock-b650m.jpg",
+        stock: 6,
+        categoryId: catMobo.id,
+        compatibleSocketId: am5.id,
+        memoryType: "DDR5",
+      },
+      {
+        name: "ASUS TUF Gaming X670E-PLUS",
+        price: 309,
+        imageUrl: "/products/asus-tuf-x670e.jpg",
+        stock: 3,
+        categoryId: catMobo.id,
+        compatibleSocketId: am5.id,
+        memoryType: "DDR5",
+      },
+    ],
   });
 
-  await prisma.product.create({
-    data: {
-      name: "Gigabyte B650 AORUS Elite AX",
-      price: 200.0,
-      imageUrl:
-        "https://m.media-amazon.com/images/I/81d6mY+a9HL._AC_SL1500_.jpg",
-      stock: 3,
-      categoryId: catMobo.id,
-      compatibleSocketId: socketAm5.id, // Soporta AMD
-      memoryType: "DDR5",
-      formFactor: "ATX",
-    },
+  // --- RAM ---
+  await prisma.product.createMany({
+    data: [
+      {
+        name: "Corsair Vengeance LPX 16GB DDR4",
+        price: 45,
+        imageUrl: "/products/corsair-vengeance-ddr4.jpg",
+        stock: 50,
+        categoryId: catRam.id,
+        memoryType: "DDR4",
+        powerWatts: 5,
+      },
+      {
+        name: "Kingston Fury Beast 32GB DDR4",
+        price: 79,
+        imageUrl: "/products/kingston-fury-ddr4.jpg",
+        stock: 20,
+        categoryId: catRam.id,
+        memoryType: "DDR4",
+        powerWatts: 5,
+      },
+      {
+        name: "Crucial RAM 16GB DDR5",
+        price: 55,
+        imageUrl: "/products/crucial-ddr5.jpg",
+        stock: 30,
+        categoryId: catRam.id,
+        memoryType: "DDR5",
+        powerWatts: 8,
+      },
+      {
+        name: "G.SKILL Trident Z5 RGB 32GB DDR5",
+        price: 115,
+        imageUrl: "/products/gskill-trident-ddr5.jpg",
+        stock: 15,
+        categoryId: catRam.id,
+        memoryType: "DDR5",
+        powerWatts: 10,
+      },
+    ],
   });
 
-  // 6. Crear Productos (RAM)
-  await prisma.product.create({
-    data: {
-      name: "Corsair Vengeance LPX 16GB (2x8GB) DDR4",
-      price: 45.0,
-      categoryId: catRam.id,
-      memoryType: "DDR4",
-    },
+  // --- GPU ---
+  await prisma.product.createMany({
+    data: [
+      {
+        name: "MSI GeForce RTX 3060 Ventus 2X",
+        price: 289,
+        imageUrl: "/products/msi-rtx-3060.jpg",
+        stock: 10,
+        categoryId: catGpu.id,
+        powerWatts: 170,
+      },
+      {
+        name: "ASUS Dual GeForce RTX 4060 OC",
+        price: 299,
+        imageUrl: "/products/asus-rtx-4060.jpg",
+        stock: 8,
+        categoryId: catGpu.id,
+        powerWatts: 115,
+      },
+      {
+        name: "Gigabyte GeForce RTX 4070",
+        price: 549,
+        imageUrl: "/products/gigabyte-rtx-4070.jpg",
+        stock: 4,
+        categoryId: catGpu.id,
+        powerWatts: 200,
+      },
+      {
+        name: "PowerColor Radeon RX 6600",
+        price: 199,
+        imageUrl: "/products/radeon-rx-6600.jpg",
+        stock: 12,
+        categoryId: catGpu.id,
+        powerWatts: 132,
+      },
+      {
+        name: "Sapphire Pulse Radeon RX 7600",
+        price: 269,
+        imageUrl: "/products/sapphire-rx-7600.jpg",
+        stock: 7,
+        categoryId: catGpu.id,
+        powerWatts: 165,
+      },
+    ],
   });
 
-  console.log("✅ Seed completado con éxito.");
+  // --- ALMACENAMIENTO ---
+  await prisma.product.createMany({
+    data: [
+      {
+        name: "Kingston NV2 1TB M.2",
+        price: 60,
+        imageUrl: "/products/kingston-nv2.jpg",
+        stock: 100,
+        categoryId: catStorage.id,
+        powerWatts: 5,
+      },
+      {
+        name: "Samsung 980 PRO 1TB",
+        price: 89,
+        imageUrl: "/products/samsung-980-pro.jpg",
+        stock: 25,
+        categoryId: catStorage.id,
+        powerWatts: 8,
+      },
+      {
+        name: "WD Blue SN580 500GB",
+        price: 45,
+        imageUrl: "/products/wd-blue-sn580.jpg",
+        stock: 40,
+        categoryId: catStorage.id,
+        powerWatts: 4,
+      },
+      {
+        name: "Crucial P3 Plus 2TB",
+        price: 119,
+        imageUrl: "/products/crucial-p3-plus.jpg",
+        stock: 10,
+        categoryId: catStorage.id,
+        powerWatts: 6,
+      },
+    ],
+  });
+
+  // --- FUENTES DE PODER ---
+  await prisma.product.createMany({
+    data: [
+      {
+        name: "EVGA 500 W1 500W",
+        price: 49,
+        imageUrl: "/products/evga-500w.jpg",
+        stock: 20,
+        categoryId: catPsu.id,
+        powerWatts: 0,
+      },
+      {
+        name: "Corsair RM750e 750W",
+        price: 99,
+        imageUrl: "/products/corsair-rm750e.jpg",
+        stock: 15,
+        categoryId: catPsu.id,
+        powerWatts: 0,
+      },
+      {
+        name: "Gigabyte UD850GM 850W",
+        price: 109,
+        imageUrl: "/products/gigabyte-ud850.jpg",
+        stock: 8,
+        categoryId: catPsu.id,
+        powerWatts: 0,
+      },
+      {
+        name: "MSI MAG A650BN 650W",
+        price: 65,
+        imageUrl: "/products/msi-mag-a650.jpg",
+        stock: 25,
+        categoryId: catPsu.id,
+        powerWatts: 0,
+      },
+    ],
+  });
+
+  console.log("✅ Base de datos sembrada correctamente con imageUrl.");
 }
 
 main()
