@@ -1,0 +1,515 @@
+[
+  {
+    "id": "13f59e59-5aef-4076-971c-29acb16aa8a0",
+    "name": "Intel Core i5-12400F",
+    "price": 150,
+    "imageUrl": "/products/core-i5-12400f.jpg",
+    "stock": 15,
+    "createdAt": "2026-01-22T13:43:31.274Z",
+    "categoryId": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+    "socketId": "2e154bc6-96b4-4ad0-a4d7-680939cec1c7",
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 65,
+    "formFactor": null,
+    "category": {
+      "id": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+      "name": "Procesador",
+      "slug": "cpu"
+    }
+  },
+  {
+    "id": "16cdfa79-c12b-48da-8a65-b7d2140f0591",
+    "name": "Kingston Fury Beast 32GB DDR4",
+    "price": 79,
+    "imageUrl": "/products/kingston-fury-ddr4.jpg",
+    "stock": 20,
+    "createdAt": "2026-01-22T13:43:32.520Z",
+    "categoryId": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": "DDR4",
+    "powerWatts": 5,
+    "formFactor": null,
+    "category": {
+      "id": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+      "name": "Memoria RAM",
+      "slug": "ram"
+    }
+  },
+  {
+    "id": "185eda4c-4f0d-4824-8e26-711acfa85529",
+    "name": "Intel Core i3-12100F",
+    "price": 110,
+    "imageUrl": "/products/core-i3-12100f.jpg",
+    "stock": 20,
+    "createdAt": "2026-01-22T13:43:31.274Z",
+    "categoryId": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+    "socketId": "2e154bc6-96b4-4ad0-a4d7-680939cec1c7",
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 58,
+    "formFactor": null,
+    "category": {
+      "id": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+      "name": "Procesador",
+      "slug": "cpu"
+    }
+  },
+  {
+    "id": "24b9527e-d738-4b4a-96b1-5082581d9810",
+    "name": "G.SKILL Trident Z5 RGB 32GB DDR5",
+    "price": 115,
+    "imageUrl": "/products/gskill-trident-ddr5.jpg",
+    "stock": 15,
+    "createdAt": "2026-01-22T13:43:32.520Z",
+    "categoryId": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": "DDR5",
+    "powerWatts": 10,
+    "formFactor": null,
+    "category": {
+      "id": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+      "name": "Memoria RAM",
+      "slug": "ram"
+    }
+  },
+  {
+    "id": "27c93de5-25f2-41e5-a19e-2a75fd478af9",
+    "name": "WD Blue SN580 500GB",
+    "price": 45,
+    "imageUrl": "/products/wd-blue-sn580.jpg",
+    "stock": 40,
+    "createdAt": "2026-01-22T13:43:33.765Z",
+    "categoryId": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 4,
+    "formFactor": null,
+    "category": {
+      "id": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+      "name": "Almacenamiento",
+      "slug": "storage"
+    }
+  },
+  {
+    "id": "30621820-4a12-42e7-8ed8-836aadad62f6",
+    "name": "PowerColor Radeon RX 6600",
+    "price": 199,
+    "imageUrl": "/products/radeon-rx-6600.jpg",
+    "stock": 12,
+    "createdAt": "2026-01-22T13:43:33.145Z",
+    "categoryId": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 132,
+    "formFactor": null,
+    "category": {
+      "id": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+      "name": "Tarjeta de Video",
+      "slug": "gpu"
+    }
+  },
+  {
+    "id": "37b72424-3fc1-4439-9453-2b2ed0086637",
+    "name": "ASRock B650M-HDV/M.2",
+    "price": 125,
+    "imageUrl": "/products/asrock-b650m.jpg",
+    "stock": 6,
+    "createdAt": "2026-01-22T13:43:31.900Z",
+    "categoryId": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+    "socketId": null,
+    "compatibleSocketId": "17e40ac5-3e13-4239-8d9c-670bdad4b5a1",
+    "memoryType": "DDR5",
+    "powerWatts": null,
+    "formFactor": null,
+    "category": {
+      "id": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+      "name": "Placa Madre",
+      "slug": "motherboard"
+    }
+  },
+  {
+    "id": "438ca870-2d39-4350-8007-6e0ad474c9f0",
+    "name": "Crucial RAM 16GB DDR5",
+    "price": 55,
+    "imageUrl": "/products/crucial-ddr5.jpg",
+    "stock": 30,
+    "createdAt": "2026-01-22T13:43:32.520Z",
+    "categoryId": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": "DDR5",
+    "powerWatts": 8,
+    "formFactor": null,
+    "category": {
+      "id": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+      "name": "Memoria RAM",
+      "slug": "ram"
+    }
+  },
+  {
+    "id": "478b873c-e1f1-485a-aa90-487c078a0e2a",
+    "name": "Sapphire Pulse Radeon RX 7600",
+    "price": 269,
+    "imageUrl": "/products/sapphire-rx-7600.jpg",
+    "stock": 7,
+    "createdAt": "2026-01-22T13:43:33.145Z",
+    "categoryId": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 165,
+    "formFactor": null,
+    "category": {
+      "id": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+      "name": "Tarjeta de Video",
+      "slug": "gpu"
+    }
+  },
+  {
+    "id": "563cd322-0e08-4035-bf7e-13bdd5dd7260",
+    "name": "Corsair RM750e 750W",
+    "price": 99,
+    "imageUrl": "/products/corsair-rm750e.jpg",
+    "stock": 15,
+    "createdAt": "2026-01-22T13:43:34.389Z",
+    "categoryId": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 0,
+    "formFactor": null,
+    "category": {
+      "id": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+      "name": "Fuente de Poder",
+      "slug": "psu"
+    }
+  },
+  {
+    "id": "56a91acf-3321-4aa8-b292-05a54452e2ac",
+    "name": "Corsair Vengeance LPX 16GB DDR4",
+    "price": 45,
+    "imageUrl": "/products/corsair-vengeance-ddr4.jpg",
+    "stock": 50,
+    "createdAt": "2026-01-22T13:43:32.520Z",
+    "categoryId": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": "DDR4",
+    "powerWatts": 5,
+    "formFactor": null,
+    "category": {
+      "id": "64a96eb0-1415-4583-ba2a-9e08dbacf620",
+      "name": "Memoria RAM",
+      "slug": "ram"
+    }
+  },
+  {
+    "id": "5d7e599a-20ed-4a47-a27b-8e309e7dc478",
+    "name": "MSI GeForce RTX 3060 Ventus 2X",
+    "price": 289,
+    "imageUrl": "/products/msi-rtx-3060.jpg",
+    "stock": 10,
+    "createdAt": "2026-01-22T13:43:33.145Z",
+    "categoryId": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 170,
+    "formFactor": null,
+    "category": {
+      "id": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+      "name": "Tarjeta de Video",
+      "slug": "gpu"
+    }
+  },
+  {
+    "id": "6ee6abd9-26d2-4311-8bd0-135f6e98a029",
+    "name": "ASUS Prime H610M-E D4",
+    "price": 99,
+    "imageUrl": "/products/asus-prime-h610m.jpg",
+    "stock": 10,
+    "createdAt": "2026-01-22T13:43:31.900Z",
+    "categoryId": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+    "socketId": null,
+    "compatibleSocketId": "2e154bc6-96b4-4ad0-a4d7-680939cec1c7",
+    "memoryType": "DDR4",
+    "powerWatts": null,
+    "formFactor": null,
+    "category": {
+      "id": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+      "name": "Placa Madre",
+      "slug": "motherboard"
+    }
+  },
+  {
+    "id": "73e4bcee-df96-492f-802d-5f9547eacabe",
+    "name": "AMD Ryzen 7 7700X",
+    "price": 330,
+    "imageUrl": "/products/ryzen-7-7700x.jpg",
+    "stock": 5,
+    "createdAt": "2026-01-22T13:43:31.274Z",
+    "categoryId": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+    "socketId": "17e40ac5-3e13-4239-8d9c-670bdad4b5a1",
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 105,
+    "formFactor": null,
+    "category": {
+      "id": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+      "name": "Procesador",
+      "slug": "cpu"
+    }
+  },
+  {
+    "id": "7745c23c-2c57-4355-b38d-7fd0102f6826",
+    "name": "Gigabyte B660M DS3H AX",
+    "price": 139,
+    "imageUrl": "/products/gigabyte-b660m.jpg",
+    "stock": 8,
+    "createdAt": "2026-01-22T13:43:31.900Z",
+    "categoryId": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+    "socketId": null,
+    "compatibleSocketId": "2e154bc6-96b4-4ad0-a4d7-680939cec1c7",
+    "memoryType": "DDR4",
+    "powerWatts": null,
+    "formFactor": null,
+    "category": {
+      "id": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+      "name": "Placa Madre",
+      "slug": "motherboard"
+    }
+  },
+  {
+    "id": "914c61ea-b2fb-49da-b6e9-08c0ee808d21",
+    "name": "AMD Ryzen 5 7600X",
+    "price": 220,
+    "imageUrl": "/products/ryzen-5-7600x.jpg",
+    "stock": 12,
+    "createdAt": "2026-01-22T13:43:31.274Z",
+    "categoryId": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+    "socketId": "17e40ac5-3e13-4239-8d9c-670bdad4b5a1",
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 105,
+    "formFactor": null,
+    "category": {
+      "id": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+      "name": "Procesador",
+      "slug": "cpu"
+    }
+  },
+  {
+    "id": "94edeea0-f834-476a-b2d9-3adb93ec324f",
+    "name": "ASUS Dual GeForce RTX 4060 OC",
+    "price": 299,
+    "imageUrl": "/products/asus-rtx-4060.jpg",
+    "stock": 8,
+    "createdAt": "2026-01-22T13:43:33.145Z",
+    "categoryId": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 115,
+    "formFactor": null,
+    "category": {
+      "id": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+      "name": "Tarjeta de Video",
+      "slug": "gpu"
+    }
+  },
+  {
+    "id": "a488ec1b-8670-47f1-8ebd-9f261dc77ad2",
+    "name": "Samsung 980 PRO 1TB",
+    "price": 89,
+    "imageUrl": "/products/samsung-980-pro.jpg",
+    "stock": 25,
+    "createdAt": "2026-01-22T13:43:33.765Z",
+    "categoryId": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 8,
+    "formFactor": null,
+    "category": {
+      "id": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+      "name": "Almacenamiento",
+      "slug": "storage"
+    }
+  },
+  {
+    "id": "ae13c24c-76e5-4305-a261-d616a0e08a7f",
+    "name": "EVGA 500 W1 500W",
+    "price": 49,
+    "imageUrl": "/products/evga-500w.jpg",
+    "stock": 20,
+    "createdAt": "2026-01-22T13:43:34.389Z",
+    "categoryId": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 0,
+    "formFactor": null,
+    "category": {
+      "id": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+      "name": "Fuente de Poder",
+      "slug": "psu"
+    }
+  },
+  {
+    "id": "bdce9826-1fee-4068-8e39-7a25ef71a0d6",
+    "name": "ASUS TUF Gaming X670E-PLUS",
+    "price": 309,
+    "imageUrl": "/products/asus-tuf-x670e.jpg",
+    "stock": 3,
+    "createdAt": "2026-01-22T13:43:31.900Z",
+    "categoryId": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+    "socketId": null,
+    "compatibleSocketId": "17e40ac5-3e13-4239-8d9c-670bdad4b5a1",
+    "memoryType": "DDR5",
+    "powerWatts": null,
+    "formFactor": null,
+    "category": {
+      "id": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+      "name": "Placa Madre",
+      "slug": "motherboard"
+    }
+  },
+  {
+    "id": "c175db01-05fc-4cfd-8c1e-cc840758a091",
+    "name": "Crucial P3 Plus 2TB",
+    "price": 119,
+    "imageUrl": "/products/crucial-p3-plus.jpg",
+    "stock": 10,
+    "createdAt": "2026-01-22T13:43:33.765Z",
+    "categoryId": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 6,
+    "formFactor": null,
+    "category": {
+      "id": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+      "name": "Almacenamiento",
+      "slug": "storage"
+    }
+  },
+  {
+    "id": "c63ecc31-ce32-46fa-9df3-9fc659859f2f",
+    "name": "Kingston NV2 1TB M.2",
+    "price": 60,
+    "imageUrl": "/products/kingston-nv2.jpg",
+    "stock": 100,
+    "createdAt": "2026-01-22T13:43:33.765Z",
+    "categoryId": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 5,
+    "formFactor": null,
+    "category": {
+      "id": "817126b6-ecc1-4db0-a979-73daa4ea01d9",
+      "name": "Almacenamiento",
+      "slug": "storage"
+    }
+  },
+  {
+    "id": "d18c987e-cfbf-4072-8e67-03af0cf207a6",
+    "name": "Intel Core i7-12700K",
+    "price": 320,
+    "imageUrl": "/products/core-i7-12700k.jpg",
+    "stock": 8,
+    "createdAt": "2026-01-22T13:43:31.274Z",
+    "categoryId": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+    "socketId": "2e154bc6-96b4-4ad0-a4d7-680939cec1c7",
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 190,
+    "formFactor": null,
+    "category": {
+      "id": "ae0601d8-e90d-441c-a2fc-384a75c0e45e",
+      "name": "Procesador",
+      "slug": "cpu"
+    }
+  },
+  {
+    "id": "d424333f-c61a-42cd-8927-5095038fdc06",
+    "name": "Gigabyte GeForce RTX 4070",
+    "price": 549,
+    "imageUrl": "/products/gigabyte-rtx-4070.jpg",
+    "stock": 4,
+    "createdAt": "2026-01-22T13:43:33.145Z",
+    "categoryId": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 200,
+    "formFactor": null,
+    "category": {
+      "id": "269b5291-1c1b-48b4-9a3c-a78f30e591ca",
+      "name": "Tarjeta de Video",
+      "slug": "gpu"
+    }
+  },
+  {
+    "id": "dd1a5717-8453-44a4-919a-ebf5059ffe43",
+    "name": "MSI MAG A650BN 650W",
+    "price": 65,
+    "imageUrl": "/products/msi-mag-a650.jpg",
+    "stock": 25,
+    "createdAt": "2026-01-22T13:43:34.389Z",
+    "categoryId": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 0,
+    "formFactor": null,
+    "category": {
+      "id": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+      "name": "Fuente de Poder",
+      "slug": "psu"
+    }
+  },
+  {
+    "id": "e39c9289-0dbb-494e-bd1e-f7c3d54e00af",
+    "name": "Gigabyte UD850GM 850W",
+    "price": 109,
+    "imageUrl": "/products/gigabyte-ud850.jpg",
+    "stock": 8,
+    "createdAt": "2026-01-22T13:43:34.389Z",
+    "categoryId": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+    "socketId": null,
+    "compatibleSocketId": null,
+    "memoryType": null,
+    "powerWatts": 0,
+    "formFactor": null,
+    "category": {
+      "id": "6c832a54-4ad5-49ea-a56c-499edb3fd936",
+      "name": "Fuente de Poder",
+      "slug": "psu"
+    }
+  },
+  {
+    "id": "e6c9c6c7-5b4f-427f-95ff-8dd61c47b97f",
+    "name": "MSI PRO Z690-A WiFi (DDR5)",
+    "price": 219,
+    "imageUrl": "/products/msi-z690-a.jpg",
+    "stock": 4,
+    "createdAt": "2026-01-22T13:43:31.900Z",
+    "categoryId": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+    "socketId": null,
+    "compatibleSocketId": "2e154bc6-96b4-4ad0-a4d7-680939cec1c7",
+    "memoryType": "DDR5",
+    "powerWatts": null,
+    "formFactor": null,
+    "category": {
+      "id": "dfa2e9c4-1203-42d7-9cb1-549f1d999a2a",
+      "name": "Placa Madre",
+      "slug": "motherboard"
+    }
+  }
+]

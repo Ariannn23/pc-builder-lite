@@ -8,7 +8,10 @@ interface BuilderProps {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+import { auth } from "@/auth";
+
 export default async function BuilderPage(props: BuilderProps) {
+  const session = await auth();
   const searchParams = await props.searchParams;
   const categorySlug = (searchParams.category as string) || "cpu";
   const categories = await getCategories();
@@ -58,7 +61,7 @@ export default async function BuilderPage(props: BuilderProps) {
 
         <div className="lg:col-span-1">
           <div className="sticky top-24 z-10">
-            <BuildSummary />
+            <BuildSummary session={session} />
           </div>
         </div>
       </div>

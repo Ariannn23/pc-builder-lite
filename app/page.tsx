@@ -6,17 +6,26 @@ import Testimonials from "@/components/landing/Testimonials";
 import FAQ from "@/components/landing/FAQ";
 import CTA from "@/components/landing/CTA";
 import Footer from "@/components/Footer";
+import { prisma } from "@/lib/prisma";
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const featuredBuilds = await prisma.build.findMany({
+    where: { isFeatured: true },
+    include: {
+      buildItems: { include: { product: true } },
+    },
+    take: 3,
+  });
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 overflow-hidden cursor-default">
       <Hero />
       <HowItWorks />
-      <Inspiration />
+      <Inspiration builds={featuredBuilds} />
       <WhyChooseUs />
       <Testimonials />
       <FAQ />
-      <CTA /> {/* Ahora debería renderizar correctamente */}
+      <CTA />
       <Footer />
     </div>
   );

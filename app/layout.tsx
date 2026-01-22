@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { auth } from "@/auth";
+import SessionProvider from "@/components/SessionProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,6 +16,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000",
+  ),
   title: "PC Builder Lite | Diseña tu PC Ideal",
   description:
     "La herramienta definitiva para armar tu PC Gamer sin errores de compatibilidad.",
@@ -32,8 +38,10 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Navbar session={session} />
-        {children}
+        <SessionProvider session={session}>
+          <Navbar session={session} />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

@@ -1,16 +1,14 @@
 "use client";
 
+import { useBuildStore } from "@/hooks/useBuildStore";
 import { useEffect } from "react";
-import { useBuilderStore } from "@/store/useBuilder";
 
 export default function CartCleaner() {
-  const reset = useBuilderStore((state) => state.reset);
+  const clearBuild = useBuildStore((state) => state.clearBuild);
 
   useEffect(() => {
-    // Al montarse este componente (cuando llegas a la página de éxito),
-    // limpiamos el carrito inmediatamente.
-    reset();
-  }, [reset]);
+    clearBuild();
+  }, [clearBuild]);
 
-  return null; // Este componente no renderiza nada visible
+  return null;
 }

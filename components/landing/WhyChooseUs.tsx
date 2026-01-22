@@ -2,6 +2,7 @@
 import React from "react";
 import { Database, ShieldCheck, UserX } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function WhyChooseUs() {
   return (
@@ -46,10 +47,31 @@ export default function WhyChooseUs() {
               <div className="absolute top-[-20%] right-[-20%] w-[300px] h-[300px] bg-electric-100/50 rounded-full blur-3xl pointer-events-none" />
 
               <div className="flex gap-4 h-[45%] z-10">
-                <div className="w-1/2 bg-white rounded-3xl shadow-sm border border-slate-100 hover:scale-[1.02] transition-transform duration-500"></div>
-                <div className="w-1/2 bg-white rounded-3xl shadow-sm border border-slate-100 hover:scale-[1.02] transition-transform duration-500"></div>
+                <div className="w-1/2 bg-white rounded-3xl shadow-sm border border-slate-100 hover:scale-[1.02] transition-transform duration-500 relative overflow-hidden group">
+                  <Image
+                    src="/images/feature-rocket-v2.png"
+                    alt="Base de datos real"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="w-1/2 bg-white rounded-3xl shadow-sm border border-slate-100 hover:scale-[1.02] transition-transform duration-500 relative overflow-hidden group">
+                  <Image
+                    src="/images/feature-anti-error-v2.png"
+                    alt="Anti-errores"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
               </div>
-              <div className="h-[55%] bg-white rounded-3xl shadow-sm border border-slate-100 z-10 hover:scale-[1.01] transition-transform duration-500"></div>
+              <div className="h-[55%] bg-white rounded-3xl shadow-sm border border-slate-100 z-10 hover:scale-[1.01] transition-transform duration-500 relative overflow-hidden group">
+                <Image
+                  src="/images/feature-database-v2.png"
+                  alt="Sin registro"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
             </motion.div>
           </div>
         </div>

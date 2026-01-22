@@ -61,6 +61,8 @@ model Build {
   userId     String?
   user       User?       @relation(fields: [userId], references: [id])
   createdAt  DateTime    @default(now())
+  isFeatured Boolean     @default(false)
+  description String?
   buildItems BuildItem[]
 }
 

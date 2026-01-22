@@ -36,5 +36,5 @@ export async function saveBuild(totalPrice: number, selectedParts: any) {
   }
 
   // Redirigir a la página de éxito correcta (/build/[id])
-  redirect(`/build/${buildId}`);
+  redirect(`/build/${buildId}?saved=true`);
 }

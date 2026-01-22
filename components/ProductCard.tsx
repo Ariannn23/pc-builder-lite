@@ -1,10 +1,10 @@
 "use client";
 import { Cpu, Zap, MemoryStick, Layers } from "lucide-react";
-import { useBuilderStore } from "../store/useBuilder";
+import { useBuildStore } from "@/hooks/useBuildStore";
+import { checkCompatibility } from "@/lib/compatibility";
 import type { Product, Category, Socket } from "@prisma/client";
-import { motion } from "framer-motion"; // <--- IMPORTANTE
+import { motion } from "framer-motion";
 
-// (Mantén tus interfaces y tipos iguales...)
 type ProductWithRelations = Product & {
   socket?: Socket | null;
   compatibleSocket?: Socket | null;
@@ -16,35 +16,33 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-  const { addPart, selectedParts } = useBuilderStore();
-  const isSelected = selectedParts[product.category.slug]?.id === product.id;
+  const { setComponent, selectedComponents } = useBuildStore();
+  const slug = product.category.slug;
+  const isSelected = selectedComponents[slug]?.id === product.id;
 
-  // (Mantén tu lógica de compatibilidad igual...)
-  let isCompatible = true;
-  let incompatibilityReason = "";
+  // Verificar compatibilidad usando la utilidad centralizada
+  // Creamos un escenario hipotético: "Si elijo este producto, ¿hay problemas?"
+  // Mantenemos los componentes actuales, pero reemplazamos/agregamos el actual
+  const hypotheticalBuild = { ...selectedComponents, [slug]: product };
+  const issues = checkCompatibility(hypotheticalBuild);
 
-  if (product.category.slug === "motherboard") {
-    const selectedCpu = selectedParts["cpu"];
-    if (selectedCpu && product.compatibleSocketId !== selectedCpu.socketId) {
-      isCompatible = false;
-      incompatibilityReason = `Solo compatible con ${product.compatibleSocket?.name}`;
-    }
-  }
+  // Filtramos issues que afecten a ESTA categoría
+  // Ej: Si elijo una Mobo, y hay error de Socket, afecta a 'motherboard' -> Incompatible
+  const relevantIssues = issues.filter(
+    (issue) => issue.affectedSlugs.includes(slug) && issue.type === "error",
+  );
+  const isCompatible = relevantIssues.length === 0;
 
-  if (product.category.slug === "ram") {
-    const selectedMobo = selectedParts["motherboard"];
-    if (selectedMobo && product.memoryType !== selectedMobo.memoryType) {
-      isCompatible = false;
-      incompatibilityReason = `Requiere placa ${product.memoryType}`;
-    }
-  }
+  // Extraer mensaje del primer problema relevante
+  const incompatibilityReason =
+    relevantIssues[0]?.message.split(":")[1]?.trim() || "No compatible";
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      whileHover={{ y: -5 }} // Efecto Flotar
+      whileHover={{ y: -5 }}
       className={`
         border rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden group bg-white
         ${!isCompatible ? "opacity-60 grayscale bg-slate-50" : ""} 
@@ -55,18 +53,16 @@ export default function ProductCard({ product }: Props) {
         }
       `}
     >
-      {/* (El resto de tu JSX de imagen y textos se queda IGUAL...) */}
       {!isCompatible && (
-        <div className="absolute top-0 right-0 bg-red-50 text-red-500 text-[10px] uppercase font-bold px-3 py-1 rounded-bl-xl border-l border-b border-red-100">
+        <div className="absolute top-0 right-0 bg-red-50 text-red-500 text-[10px] uppercase font-bold px-3 py-1 rounded-bl-xl border-l border-b border-red-100 z-10">
           Incompatible
         </div>
       )}
 
       <div>
         <div className="relative w-full h-40 mb-4 bg-white rounded-xl overflow-hidden flex items-center justify-center p-4 border border-slate-100 shadow-inner">
-          {/* Agregamos una animación extra a la imagen al hacer hover */}
           <motion.div
-            className="w-full h-full flex items-center justify-center"
+            className="w-full h-full flex items-center justify-center p-2"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
@@ -74,7 +70,7 @@ export default function ProductCard({ product }: Props) {
               <img
                 src={product.imageUrl}
                 alt={product.name}
-                className="object-contain h-full w-full mix-blend-multiply"
+                className="object-contain max-h-full max-w-full mix-blend-multiply"
               />
             ) : (
               <div className="text-slate-300 font-medium text-xs">
@@ -85,48 +81,47 @@ export default function ProductCard({ product }: Props) {
         </div>
 
         <div className="flex justify-between items-start mb-2">
-          <h3 className="font-bold text-slate-800 text-lg leading-tight transition-colors">
+          <h3 className="font-bold text-slate-800 text-sm md:text-base leading-tight transition-colors line-clamp-2">
             {product.name}
           </h3>
-          <span className="text-lg font-bold ml-2 text-electric-600 bg-electric-50 px-2 rounded-md">
+          <span className="text-sm md:text-lg font-bold ml-2 text-electric-600 bg-electric-50 px-2 rounded-md whitespace-nowrap">
             ${product.price}
           </span>
         </div>
 
-        <div className="text-sm text-slate-500 mb-5 space-y-1.5">
-          {/* (Tus iconos se quedan igual...) */}
+        <div className="text-xs text-slate-500 mb-5 space-y-1.5">
           {product.socket && (
             <div className="flex items-center gap-2">
-              <Cpu size={16} className="text-electric-400" />
+              <Cpu size={14} className="text-electric-400" />
               <span>{product.socket.name}</span>
             </div>
           )}
           {product.compatibleSocket && (
             <div className="flex items-center gap-2">
-              <Layers size={16} className="text-electric-400" />
+              <Layers size={14} className="text-electric-400" />
               <span>
-                Soporta:{" "}
+                Cmp:{" "}
                 <span className="text-slate-700 font-medium">
                   {product.compatibleSocket.name}
                 </span>
               </span>
             </div>
           )}
-          {product.powerWatts && product.powerWatts > 0 && (
+          {product.powerWatts !== null && product.powerWatts > 0 && (
             <div className="flex items-center gap-2">
-              <Zap size={16} className="text-yellow-500" />
+              <Zap size={14} className="text-yellow-500" />
               <span>{product.powerWatts}W</span>
             </div>
           )}
           {product.memoryType && (
             <div className="flex items-center gap-2">
-              <MemoryStick size={16} className="text-electric-400" />
+              <MemoryStick size={14} className="text-electric-400" />
               <span>{product.memoryType}</span>
             </div>
           )}
 
           {!isCompatible && (
-            <p className="text-red-500 font-medium text-xs mt-3 pt-2 border-t border-red-100 flex items-center gap-1">
+            <p className="text-red-500 font-medium text-[10px] mt-3 pt-2 border-t border-red-100 flex items-center gap-1">
               ⛔ {incompatibilityReason}
             </p>
           )}
@@ -134,11 +129,11 @@ export default function ProductCard({ product }: Props) {
       </div>
 
       <motion.button
-        whileTap={{ scale: 0.95 }} // Efecto de click
-        onClick={() => addPart(product.category.slug, product)}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setComponent(slug, product)}
         disabled={isSelected || !isCompatible}
         className={`
-          w-full py-2.5 rounded-xl text-sm font-bold tracking-wide transition-colors duration-200 shadow-md
+          w-full py-2.5 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-colors duration-200 shadow-md
           ${
             !isCompatible
               ? "bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200 shadow-none"

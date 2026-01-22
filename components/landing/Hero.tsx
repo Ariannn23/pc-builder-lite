@@ -18,7 +18,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block py-1 px-3 rounded-full bg-electric-100 text-electric-700 text-xs font-bold tracking-wider mb-6 border border-electric-200">
-              V4.0 YA DISPONIBLE
+              V 4.5 YA DISPONIBLE
             </span>
             <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 leading-[1.1]">
               Construye tu <br />

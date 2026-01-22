@@ -33,7 +33,7 @@ const reviews = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-gradient-to-b from-white to-sky-50 border-t border-slate-100 overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-white to-sky-50 overflow-hidden">
       <div className="text-center mb-16">
         <h2 className="text-3xl font-bold text-slate-900 mb-2 tracking-tight">
           La comunidad confía en nosotros
