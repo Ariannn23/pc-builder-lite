@@ -2,27 +2,40 @@
 
 import { useBuilderStore } from "../store/useBuilder";
 import { ShoppingCart, Zap, Trash2, Cpu, Loader2 } from "lucide-react";
-import { saveBuild } from "@/app/actions"; // <--- Importamos la acción
-import { useTransition } from "react"; // <--- Para el estado de carga
+import { saveBuild } from "@/app/actions";
+import { useTransition, useEffect, useState } from "react"; // <--- Añadimos useEffect y useState
 
 export default function BuildSummary() {
   const { selectedParts, removePart, getTotalPrice, getTotalWatts } =
     useBuilderStore();
   const partsArray = Object.entries(selectedParts);
-
-  // Hook para saber si está guardando
   const [isPending, startTransition] = useTransition();
 
+  // --- LÓGICA DE HIDRATACIÓN ---
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Se activa solo cuando llega al navegador
+  }, []);
+
   const handleSave = () => {
-    // Iniciamos la transición (guardado)
     startTransition(() => {
       saveBuild(getTotalPrice(), selectedParts);
     });
   };
 
+  // Si aún no estamos en el cliente, mostramos un estado de carga sutil
+  // Esto evita que el servidor renderice "$0" y el cliente "$139" de golpe
+  if (!isClient) {
+    return (
+      <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white shadow-xl animate-pulse text-slate-400 text-center">
+        Cargando configuración...
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white/80 backdrop-blur-md p-6 rounded-2xl border border-white shadow-xl shadow-blue-900/5 sticky top-28">
-      {/* ... (Toda la parte del Header y la Lista se queda IGUAL) ... */}
       <div className="flex items-center gap-3 mb-6 pb-4 border-b border-slate-100">
         <div className="bg-gradient-to-br from-electric-500 to-electric-600 p-2 rounded-lg text-white shadow-lg shadow-electric-500/30">
           <ShoppingCart size={20} />
@@ -61,7 +74,6 @@ export default function BuildSummary() {
           ))
         )}
       </div>
-      {/* ... (Fin de la parte igual) ... */}
 
       <div className="border-t border-slate-100 pt-5 space-y-4">
         <div className="flex justify-between text-slate-600 text-sm items-center bg-blue-50 p-3 rounded-lg border border-blue-100">
@@ -83,7 +95,6 @@ export default function BuildSummary() {
         </div>
       </div>
 
-      {/* BOTÓN CONECTADO */}
       <button
         onClick={handleSave}
         disabled={isPending || partsArray.length === 0}

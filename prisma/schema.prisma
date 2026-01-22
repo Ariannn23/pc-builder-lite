@@ -49,19 +49,25 @@ model Product {
   powerWatts         Int?
   formFactor         String?
 
-  // NOTA: Eliminamos 'buildItems' para no complicarnos con relaciones circulares ahora.
+  buildItems BuildItem[]
 }
 
-// --- 3. BUILDS (CARRITOS GUARDADOS) - VERSIÓN SIMPLIFICADA ---
+// --- 3. BUILDS (CARRITOS GUARDADOS) ---
 
 model Build {
-  id         String   @id @default(cuid())
-  createdAt  DateTime @default(now())
-  
-  // Guardamos el precio total al momento de la compra
-  totalPrice Float    
-  
-  // ¡LA CLAVE! Guardamos todos los componentes elegidos en un solo campo JSON.
-  // Esto actúa como una "foto" del recibo, inmune a cambios futuros de precio.
-  parts      Json     
+  id         String      @id @default(uuid())
+  name       String
+  totalPrice Float
+  userId     String?
+  createdAt  DateTime    @default(now())
+  buildItems BuildItem[]
+}
+
+model BuildItem {
+  id        String  @id @default(uuid())
+  buildId   String
+  build     Build   @relation(fields: [buildId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
 }

@@ -26,7 +26,7 @@ export default function CategoryTabs({ categories, activeSlug }: Props) {
           return (
             <Link
               key={cat.id}
-              href={`/?category=${cat.slug}`}
+              href={`/builder?category=${cat.slug}`}
               className="relative px-5 py-2.5 rounded-full text-sm font-bold transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-electric-400"
             >
               {/* FONDO ANIMADO (El que se mueve) */}
