@@ -33,6 +33,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       title: `${build.name} | PC Builder Lite`,
       description: `Configuración de PC de $${build.totalPrice}. ¡Entra para ver los detalles!`,
       type: "website",
+      images: ["/logo.png"], // Adding image is critical for WhatsApp
     },
   };
 }
