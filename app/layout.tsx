@@ -16,11 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000",
-  ),
+  metadataBase: new URL("https://pc-builder-lite.vercel.app"),
   title: "PC Builder Lite | Diseña tu PC Ideal",
   description:
     "La herramienta definitiva para armar tu PC Gamer sin errores de compatibilidad.",
