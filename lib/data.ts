@@ -1,3 +1,4 @@
+"use server";
 // lib/data.ts
 import { prisma } from "./prisma"; // Import relativo directo porque están en la misma carpeta
 

@@ -35,7 +35,7 @@ export default function TicketModal({ build }: Props) {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="flex-1 py-3.5 flex items-center justify-center gap-2 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 transition-all shadow-lg active:scale-95"
+        className="flex-1 py-3.5 flex items-center justify-center gap-2 rounded-xl font-bold text-white bg-slate-900 hover:bg-slate-800 transition-all shadow-lg active:scale-95 cursor-pointer"
       >
         <Printer size={18} />
         Ver Ticket

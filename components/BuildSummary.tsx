@@ -87,7 +87,7 @@ export default function BuildSummary({ session: propSession }: Props) {
                 </div>
                 <button
                   onClick={() => removeComponent(slug)}
-                  className="text-slate-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition"
+                  className="text-slate-400 hover:text-red-500 hover:bg-red-50 p-2 rounded-lg transition cursor-pointer"
                   title="Quitar"
                 >
                   <Trash2 size={16} />
@@ -120,7 +120,7 @@ export default function BuildSummary({ session: propSession }: Props) {
         <button
           onClick={handleSave}
           disabled={isPending || partsArray.length === 0}
-          className="w-full mt-6 bg-gradient-to-r from-electric-600 via-electric-500 to-electric-400 hover:to-electric-300 text-white font-bold py-4 rounded-xl transition-all shadow-xl shadow-electric-500/25 hover:shadow-electric-500/40 transform hover:-translate-y-0.5 text-lg disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
+          className="w-full py-4 bg-gradient-to-r from-electric-500 to-electric-600 text-white rounded-xl font-bold shadow-lg shadow-electric-500/30 hover:shadow-electric-500/50 hover:scale-[1.02] transition active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer"
         >
           {isPending ? (
             <>

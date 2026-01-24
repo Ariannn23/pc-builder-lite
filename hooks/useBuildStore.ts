@@ -1,18 +1,18 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Product } from "@prisma/client";
+import { ProductWithRelations } from "@/lib/compatibility";
 
 export interface BuildState {
   buildName: string;
   // Usamos un Record para guardar el producto seleccionado por cada slug de categoría
   // Ej: { cpu: ProdutoA, gpu: ProductoB }
-  selectedComponents: Record<string, Product>;
+  selectedComponents: Record<string, ProductWithRelations>;
 
   // Acciones
   setBuildName: (name: string) => void;
-  setComponent: (categorySlug: string, product: Product) => void;
+  setComponent: (categorySlug: string, product: ProductWithRelations) => void;
   removeComponent: (categorySlug: string) => void;
-  loadBuild: (components: Record<string, Product>) => void; // Nueva acción
+  loadBuild: (components: Record<string, ProductWithRelations>) => void; // Nueva acción
   clearBuild: () => void;
 
   // Computed (helpers)

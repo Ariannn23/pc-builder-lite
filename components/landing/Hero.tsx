@@ -18,7 +18,7 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-block py-1 px-3 rounded-full bg-electric-100 text-electric-700 text-xs font-bold tracking-wider mb-6 border border-electric-200">
-              V 4.5 YA DISPONIBLE
+              V 5.0 YA DISPONIBLE
             </span>
             <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 leading-[1.1]">
               Construye tu <br />
@@ -27,8 +27,8 @@ export default function Hero() {
               </span>
             </h1>
             <p className="text-xl text-slate-500 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-              Olvídate de las incompatibilidades. Nuestro algoritmo inteligente
-              verifica todo por ti.
+              Sin fallos técnicos ni complicaciones innecesarias; disfruta de la
+              tranquilidad de una configuración validada con precisión absoluta.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link href="/builder">

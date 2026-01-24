@@ -4,7 +4,9 @@ import { Product, Socket } from "@prisma/client";
 export interface ProductWithRelations extends Product {
   socket?: Socket | null;
   compatibleSocket?: Socket | null;
+  category: Category;
 }
+import { Category } from "@prisma/client";
 
 export type CompatibilityIssue = {
   type: "error" | "warning";
@@ -38,7 +40,7 @@ export function checkCompatibility(
   }
 
   // 2. Validar Memoria RAM (Placa Madre vs RAM)
-  if (motherboard && ram) { 
+  if (motherboard && ram) {
     // Comparar memoryType (DDR4 vs DDR5)
     // Asumimos que el string es exacto ej: "DDR4"
     if (motherboard.memoryType && ram.memoryType) {
