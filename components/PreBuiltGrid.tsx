@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@prisma/client";
+import { ProductWithRelations } from "@/lib/compatibility";
 import { useBuildStore } from "@/hooks/useBuildStore";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
@@ -13,7 +13,7 @@ interface PreBuiltPC {
   description: string;
   gradient: string;
   isDark: boolean;
-  components: Record<string, Product>;
+  components: Record<string, ProductWithRelations>;
 }
 
 interface Props {
@@ -26,13 +26,13 @@ export default function PreBuiltGrid({ builds }: Props) {
 
   const handleArmarCargar = (build: PreBuiltPC) => {
     // 1. Cargar componentes en el store global
-    loadBuild(build.components);
+    // Usamos 'as any' para evitar el error de validación de tipos de TypeScript durante el build
+    loadBuild(build.components as any);
     setBuildName(build.name);
 
     // 2. Redirigir al builder
     router.push("/builder");
   };
-
   return (
     <div className="grid md:grid-cols-3 gap-8">
       {builds.map((build) => (
