@@ -1,6 +1,14 @@
 import { LoginForm } from "@/components/auth/LoginForm";
 
-export default function LoginPage() {
+interface LoginPageProps {
+  searchParams: Promise<{
+    callbackUrl?: string;
+  }>;
+}
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const { callbackUrl } = await searchParams;
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 relative overflow-hidden p-4">
       {/* Animated Blobs */}
@@ -9,7 +17,7 @@ export default function LoginPage() {
       <div className="absolute top-[40%] left-[40%] w-64 h-64 bg-electric-500/20 rounded-full blur-3xl animate-pulse delay-1000 mix-blend-multiply" />
 
       <div className="relative z-10 w-full max-w-sm animate-in fade-in zoom-in duration-700 slide-in-from-bottom-4">
-        <LoginForm />
+        <LoginForm callbackUrl={callbackUrl} />
       </div>
     </div>
   );

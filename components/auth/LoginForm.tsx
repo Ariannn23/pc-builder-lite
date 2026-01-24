@@ -9,7 +9,11 @@ import { login } from "@/app/auth-actions";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 
-export const LoginForm = () => {
+interface LoginFormProps {
+  callbackUrl?: string;
+}
+
+export const LoginForm = ({ callbackUrl }: LoginFormProps) => {
   const [error, setError] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
 
@@ -24,7 +28,7 @@ export const LoginForm = () => {
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("");
     startTransition(() => {
-      login(values).then((data) => {
+      login(values, callbackUrl).then((data) => {
         if (data?.error) {
           setError(data.error);
         }
@@ -102,7 +106,11 @@ export const LoginForm = () => {
         <div className="mt-4 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
           <p>¿No tienes cuenta?</p>
           <Link
-            href="/register"
+            href={
+              callbackUrl
+                ? `/register?callbackUrl=${encodeURIComponent(callbackUrl)}`
+                : "/register"
+            }
             className="ml-1 block font-sans text-sm font-bold leading-normal text-electric-600 antialiased hover:underline"
           >
             Regístrate aquí

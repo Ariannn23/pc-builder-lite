@@ -7,7 +7,10 @@ import { prisma } from "@/lib/prisma";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
-export const login = async (values: z.infer<typeof LoginSchema>) => {
+export const login = async (
+  values: z.infer<typeof LoginSchema>,
+  callbackUrl?: string,
+) => {
   const validatedFields = LoginSchema.safeParse(values);
 
   if (!validatedFields.success) {
@@ -20,7 +23,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     await signIn("credentials", {
       email,
       password,
-      redirectTo: "/", // Redirecciona al home después de login
+      redirectTo: callbackUrl || "/", // Usa el callbackUrl si existe, sino al home
     });
   } catch (error) {
     if (error instanceof AuthError) {

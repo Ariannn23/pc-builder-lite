@@ -9,13 +9,20 @@ import { useRouter } from "next/navigation";
 import AuthAlertModal from "@/components/AuthAlertModal";
 
 interface Props {
-  session: import("next-auth").Session | null;
+  session?: import("next-auth").Session | null;
 }
 
-export default function BuildSummary({ session: propSession }: Props) {
-  const { data: contextSession } = useSession();
-  const session = propSession || contextSession;
+export default function BuildSummary({ session: _propSession }: Props = {}) {
+  const { data: session, update, status } = useSession();
   const router = useRouter();
+
+  // Forzar sincronización de sesión al montar el componente
+  // (Esto se ejecuta cada vez que vuelves del login al builder)
+  useEffect(() => {
+    if (status !== "loading") {
+      update();
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const [showAuthAlert, setShowAuthAlert] = useState(false);
 

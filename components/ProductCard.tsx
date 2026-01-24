@@ -86,7 +86,7 @@ export default function ProductCard({ product }: Props) {
               e.stopPropagation();
               setShowReviews(true);
             }}
-            className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-sm border border-slate-100 flex items-center gap-1 z-20 hover:bg-slate-50 transition"
+            className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-sm border border-slate-100 flex items-center gap-1 z-20 hover:bg-slate-50 transition cursor-pointer"
           >
             <Star size={12} className="text-yellow-400 fill-yellow-400" />
             <span className="text-[10px] font-bold text-slate-600">4.8</span>

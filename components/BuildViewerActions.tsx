@@ -4,6 +4,7 @@ import { useBuildStore } from "@/hooks/useBuildStore";
 import { Copy, ArrowRight, PaintBucket } from "lucide-react";
 import { useRouter } from "next/navigation";
 import type { Build, Product } from "@prisma/client";
+import { ProductWithRelations } from "@/lib/compatibility";
 
 interface Props {
   build: Build & { buildItems: any[] };
@@ -16,7 +17,7 @@ export default function BuildViewerActions({ build, isTemplate }: Props) {
 
   const handleClone = () => {
     // 1. Convertir items del build al formato del store { slug: product }
-    const components: Record<string, Product> = {};
+    const components: Record<string, ProductWithRelations> = {};
 
     build.buildItems.forEach((item) => {
       const slug = item.product.category.slug;

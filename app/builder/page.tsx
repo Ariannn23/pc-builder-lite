@@ -26,18 +26,41 @@ export default function BuilderPage() {
   const [products, setProducts] = useState<any[]>([]);
   const [currentCategoryName, setCurrentCategoryName] = useState("Componente");
 
-  const [loading, setLoading] = useState(true);
+  /* 
+    Estado de carga inicial (pantalla completa).
+    Solo true al principio, hasta que tenemos categorías y la primera carga de productos.
+  */
+  const [initialLoading, setInitialLoading] = useState(true);
 
+  // Estado de carga local (para cuando cambiamos de categoría, opcional si quisiéramos mostrar algo en el grid)
+  const [productsLoading, setProductsLoading] = useState(false);
+
+  // 1. Efecto de carga INICIAL (Categorías + Productos iniciales)
   useEffect(() => {
-    setLoading(true);
-    Promise.all([getCategories(), getProductsByCategory(categorySlug)]).then(
-      ([cats, prods]) => {
-        setCategories(cats);
+    // Solo si no tenemos categorías cargadas, asumimos que es el primer load real
+    if (categories.length === 0) {
+      setInitialLoading(true);
+      Promise.all([getCategories(), getProductsByCategory(categorySlug)]).then(
+        ([cats, prods]) => {
+          setCategories(cats);
+          setProducts(prods);
+          setInitialLoading(false);
+        },
+      );
+    }
+  }, []); // Se ejecuta una sola vez al montar
+
+  // 2. Efecto de cambio de CATEGORÍA (Solo actualiza productos)
+  useEffect(() => {
+    // Si ya tenemos categorías, significa que no es el primer render "crítico"
+    if (categories.length > 0) {
+      setProductsLoading(true); // Podríamos usar esto para un loader más sutil en el grid
+      getProductsByCategory(categorySlug).then((prods) => {
         setProducts(prods);
-        setLoading(false);
-      },
-    );
-  }, [categorySlug]);
+        setProductsLoading(false);
+      });
+    }
+  }, [categorySlug]); // Dependencia clave: solo cuando cambia el slug
 
   useEffect(() => {
     if (categories.length > 0) {
@@ -60,7 +83,7 @@ export default function BuilderPage() {
         </Link>
       </div>
 
-      {loading ? (
+      {initialLoading ? (
         <div className="flex-1 flex justify-center items-center min-h-[50vh]">
           <Loader />
         </div>
@@ -86,13 +109,19 @@ export default function BuilderPage() {
               </div>
 
               {/* Grid de Productos con Filtros */}
-              <FilterableProductGrid products={products} />
+              <div
+                className={`transition-opacity duration-300 ${
+                  productsLoading ? "opacity-50" : "opacity-100"
+                }`}
+              >
+                <FilterableProductGrid products={products} />
+              </div>
             </div>
           </div>
 
           <div className="lg:col-span-1">
             <div className="sticky top-24 z-10">
-              <BuildSummary session={session} />
+              <BuildSummary />
             </div>
           </div>
         </div>

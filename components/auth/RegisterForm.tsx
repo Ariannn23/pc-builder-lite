@@ -8,10 +8,16 @@ import { useState, useTransition } from "react";
 import { register } from "@/app/auth-actions";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-export const RegisterForm = () => {
+interface RegisterFormProps {
+  callbackUrl?: string;
+}
+
+export const RegisterForm = ({ callbackUrl }: RegisterFormProps) => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -35,6 +41,13 @@ export const RegisterForm = () => {
         }
         if (data.success) {
           setSuccess(data.success);
+          // Redirigir al login con el callbackUrl para completar el flujo
+          setTimeout(() => {
+            const loginUrl = callbackUrl
+              ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
+              : "/login";
+            router.push(loginUrl);
+          }, 1500); // Dar tiempo para ver el mensaje de éxito
         }
       });
     });
@@ -146,7 +159,11 @@ export const RegisterForm = () => {
         <div className="mt-4 flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
           <p>¿Ya tienes cuenta?</p>
           <Link
-            href="/login"
+            href={
+              callbackUrl
+                ? `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
+                : "/login"
+            }
             className="ml-1 block font-sans text-sm font-bold leading-normal text-electric-600 antialiased hover:underline"
           >
             Inicia Sesión

@@ -141,7 +141,7 @@ export default function ReviewModal({
                       <button
                         key={star}
                         onClick={() => setRating(star)}
-                        className="focus:outline-none transition hover:scale-110"
+                        className="focus:outline-none transition hover:scale-110 cursor-pointer"
                         aria-label={`Rate ${star} stars`}
                         type="button"
                       >
@@ -162,7 +162,7 @@ export default function ReviewModal({
                     <button
                       onClick={handleSubmit}
                       disabled={submitting || rating === 0}
-                      className="bg-blue-600 text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="bg-blue-600 text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                     >
                       {submitting ? (
                         "Enviando..."

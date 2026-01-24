@@ -1,5 +1,8 @@
 "use client";
 
+import { createPortal } from "react-dom";
+import { useState, useEffect } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { LogIn, X } from "lucide-react";
 import Link from "next/link";
@@ -15,9 +18,16 @@ export default function AuthAlertModal({
   onClose,
   callbackUrl,
 }: AuthAlertModalProps) {
-  if (!isOpen) return null;
+  const [mounted, setMounted] = useState(false);
 
-  return (
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!isOpen || !mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
         {/* Backdrop */}
@@ -83,6 +93,7 @@ export default function AuthAlertModal({
           </div>
         </motion.div>
       </div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }
