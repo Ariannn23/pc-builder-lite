@@ -33,10 +33,10 @@ export default function UserMenu({ user }: Props) {
         className="flex items-center gap-2 px-2 py-1 pe-4 bg-white/80 backdrop-blur-md rounded-full border border-slate-200 hover:bg-white hover:shadow-md transition cursor-pointer"
       >
         <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold uppercase border border-blue-200">
-          {user.name?.[0] || user.email?.[0] || "U"}
+          {user.username?.[0] || user.name?.[0] || user.email?.[0] || "U"}
         </div>
         <span className="text-sm font-semibold text-slate-700 max-w-[100px] truncate hidden sm:block">
-          {user.name?.split(" ")[0] || "Usuario"}
+          {user.username || user.name?.split(" ")[0] || "Usuario"}
         </span>
       </button>
 
@@ -51,7 +51,7 @@ export default function UserMenu({ user }: Props) {
           >
             <div className="px-4 py-3 border-b border-slate-50 bg-slate-50/50">
               <p className="text-sm font-bold text-slate-900 truncate">
-                {user.name || "Usuario"}
+                {user.username || user.name || "Usuario"}
               </p>
               <p className="text-xs text-slate-500 truncate">{user.email}</p>
             </div>

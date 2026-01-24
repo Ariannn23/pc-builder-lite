@@ -77,6 +77,28 @@ model User {
   emailVerified DateTime?
   image         String?
   password      String?   // Para credenciales (opcional)
+  
+  // Información de perfil adicional
+  phone         String?
+  
+  // Documentos de identidad (para facturación)
+  documentType  String?   @default("DNI") // DNI, Cédula, Pasaporte, RUC
+  documentNumber String?
+  
+  // Datos fiscales (para empresas)
+  businessName  String?   // Razón Social
+  taxId         String?   // RUC
+  
+  // Preferencias
+  contactPreference String? @default("email") // email, whatsapp, both
+  
+  // Dirección
+  address       String?
+  city          String?
+  state         String?
+  zipCode       String?
+  country       String?   @default("Perú")
+  
   accounts      Account[]
   sessions      Session[]
   builds        Build[]
